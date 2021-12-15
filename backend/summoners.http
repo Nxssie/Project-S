@@ -1,0 +1,43 @@
+@api= http://localhost:4000
+
+GET {{api}}/summoners
+
+###
+GET {{api}}/summoners/1
+
+#### CREATE SUMMONER
+POST {{api}}/summoners
+Content-Type: application/json;charset=utf-8
+
+{
+    "summonerId": "GlL3Kfb64Hq1aPV2c2hP-THTH_ITYXjkCNIBZgP3cP_G0kw",
+    "summonerName": "Nxssie",
+    "tier": "BRONZE",
+    "rank": "IV",
+    "leaguePoints": 24,
+    "wins": 10,
+    "losses": 12,
+    "hotStreak": false
+}
+
+###
+DELETE {{api}}/summoners/MZE-DyEbS-eW6TTpnW3DGeFLO9viKUWi56zM_faGrd-4NR7B
+
+###
+PUT {{api}}/summoners/MZE-DyEbS-eW6TTpnW3DGeFLO9viKUWi56zM_faGrd-4NR7B
+Content-Type: application/json; charset=utf-8
+
+{
+    "summonerId": "GlL3Kfb64Hq1aPV2c2hP-THTH_ITYXjkCNIBZgP3cP_G0kw",
+    "summonerName": "Nxssie",
+    "tier": "BRONZE",
+    "rank": "IV",
+    "leaguePoints": 24,
+    "wins": 10,
+    "losses": 12,
+    "hotStreak": false
+}
+
+###
+get {{api}}/addSummoner/Ongombo25
+Content-Type: application/json; charset=utf-8

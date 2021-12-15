@@ -13,7 +13,7 @@ const apiHeaders = {
 }
 
 export const doRiotQuery: RequestHandler = async(req, res) => {
-    res.json('Info refreshed');
+    res.status(200).json('Info refreshed');
     res.end();
 }
 
@@ -30,7 +30,9 @@ export const addProfile: RequestHandler = async(req, res) => {
         axios.get(`${apiUrl}/league/v4/entries/by-summoner/${response.data.id}`, {
             headers: apiHeaders
         }).then(async (sum: AxiosResponse) => {
-            if (sum.data.length == 1) {
+            if (sum.data.length >= 1) {
+                let sumWinRate = Math.round(((sum.data['0'].wins / ((sum.data['0'].wins + sum.data['0'].losses))))*100);
+
                 const summFound = await Summoner.find({summonerId: sum.data['0'].id});
                 if (summFound) {
                     res.status(301).json({message: 'The summoner already exists'});
@@ -45,12 +47,13 @@ export const addProfile: RequestHandler = async(req, res) => {
                     "leaguePoints": sum.data['0'].leaguePoints,
                     "wins": sum.data['0'].wins,
                     "losses": sum.data['0'].losses,
-                    "hotStreak": sum.data['0'].hotStreak
+                    "hotStreak": sum.data['0'].hotStreak,
+                    "winRate": sumWinRate
                 }
 
                 const pendingSummoner = new Summoner(newSummoner);
                 const addedSummoner = await pendingSummoner.save();
-                res.json(addedSummoner);
+                res.status(200).json(addedSummoner);
                 res.end();
             } else {
                 const newUnrankedSummoner = {
@@ -75,7 +78,7 @@ export const addProfile: RequestHandler = async(req, res) => {
 
 export const getSummoners: RequestHandler = async (req, res) => {
     const summoners = await Summoner.find();
-    res.json(summoners);
+    res.status(200).json(summoners);
     res.end();
 }
 
@@ -93,7 +96,7 @@ export const createSummoner: RequestHandler = async (req, res) => {
     
     const summoner = new Summoner(req.body);
     const savedSummoner = await summoner.save();
-    res.json(savedSummoner);
+    res.status(200).json(savedSummoner);
     res.end();
 }
 
@@ -101,7 +104,7 @@ export const deleteSummoner: RequestHandler = async (req, res) => {
     const summFound = await Summoner.find({summonerId: req.params.id});
     if(summFound) {
         const deletedSummoner = await Summoner.deleteOne({summonerId: req.params.id});
-        res.json(deletedSummoner);
+        res.status(200).json(deletedSummoner);
         res.end();
     } else {
         res.status(304).json({message: 'The summoner doesn´t exists'});
@@ -121,7 +124,7 @@ export const updateSummoner: RequestHandler = async (req, res) => {
             losses: req.body.losses,
             hotStreak: req.body.hotStreak
         });
-        res.json(updatedSummoner);
+        
         res.end();
     } else {
         res.status(304).json({message: 'The summoner doesn´t exists'});

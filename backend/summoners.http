@@ -17,14 +17,15 @@ Content-Type: application/json;charset=utf-8
     "leaguePoints": 24,
     "wins": 10,
     "losses": 12,
-    "hotStreak": false
+    "hotStreak": false,
+    "winRate": 45
 }
 
 ###
-DELETE {{api}}/summoners/MZE-DyEbS-eW6TTpnW3DGeFLO9viKUWi56zM_faGrd-4NR7B
+DELETE {{api}}/summoners/ylFGMy9gio_AC2i_pri9zbh7AXhAf-Suu8hfgg_mlOnKvNFS
 
 ###
-PUT {{api}}/summoners/MZE-DyEbS-eW6TTpnW3DGeFLO9viKUWi56zM_faGrd-4NR7B
+PUT {{api}}/summoners/ylFGMy9gio_AC2i_pri9zbh7AXhAf-Suu8hfgg_mlOnKvNFS
 Content-Type: application/json; charset=utf-8
 
 {
@@ -39,5 +40,5 @@ Content-Type: application/json; charset=utf-8
 }
 
 ###
-get {{api}}/addSummoner/Ongombo25
+get {{api}}/addSummoner/lutrex18
 Content-Type: application/json; charset=utf-8

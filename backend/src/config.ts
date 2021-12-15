@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 export default {
+    ENV: 'DEV',
     PORT: process.env.PORT || 3000,
     RIOT_API_KEY: process.env.API_TOKEN,
     MONGO_DATABASE: process.env.MONGO_DATABASE || 'summonersdb',

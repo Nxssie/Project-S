@@ -35,6 +35,14 @@ const summonerSchema = new Schema({
         type: Boolean,
         required: true
     },
+    winRate: {
+        type: Number,
+        required: false
+    },
+    level: {
+        type: Number,
+        required: false
+    }
 }, {
     versionKey: false,
     timestamps: true

@@ -1,6 +1,6 @@
 .env
+summoner.http
 dist
 node_modules
 .vscode
 .idea
-summoners.http
